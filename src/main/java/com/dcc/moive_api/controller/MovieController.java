@@ -32,4 +32,14 @@ public class MovieController{
     public List<Movie> findMovieByGenre(@PathVariable String genre){
         return movieService.getByGenre(genre);
     }
+
+    @GetMapping("/findByName/{name}")
+    public Movie findMovieByName(@PathVariable String name){
+        return movieService.getByName(name);
+    }
+
+    @PutMapping("updateMovie/{id}")
+    public Movie updateMovie(@PathVariable Integer id, @RequestBody Movie newMovie){
+        return movieService.updateMovieById(id, newMovie);
+    }
 }

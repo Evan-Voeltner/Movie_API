@@ -20,11 +20,25 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    public Movie updateMovieById(Integer id, Movie newMovie){
+        Movie movieToUpdate = movieRepository.findById(id).orElse(null);
+        movieToUpdate.setName(newMovie.getName());
+        movieToUpdate.setGenre(newMovie.getGenre());
+        movieToUpdate.setDirector(newMovie.getDirector());
+        movieRepository.save(movieToUpdate);
+        
+        return movieToUpdate;
+    }
+
     public Movie getById(Integer id){
         return movieRepository.findById(id).orElse(null);
     }
 
     public List<Movie> getByGenre(String genre){
         return movieRepository.findByGenre(genre);
+    }
+
+    public Movie getByName(String name){
+        return movieRepository.findByName(name);
     }
 }
