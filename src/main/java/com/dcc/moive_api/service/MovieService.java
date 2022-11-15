@@ -26,8 +26,14 @@ public class MovieService {
         movieToUpdate.setGenre(newMovie.getGenre());
         movieToUpdate.setDirector(newMovie.getDirector());
         movieRepository.save(movieToUpdate);
-        
+
         return movieToUpdate;
+    }
+
+    public Movie deleteMovieById(Integer id){
+        Movie movieToDelete = movieRepository.findById(id).orElse(null);
+        movieRepository.deleteById(id);
+        return movieToDelete;
     }
 
     public Movie getById(Integer id){

@@ -5,6 +5,7 @@ import com.dcc.moive_api.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -38,8 +39,13 @@ public class MovieController{
         return movieService.getByName(name);
     }
 
-    @PutMapping("updateMovie/{id}")
+    @PutMapping("/updateMovie/{id}")
     public Movie updateMovie(@PathVariable Integer id, @RequestBody Movie newMovie){
         return movieService.updateMovieById(id, newMovie);
+    }
+
+    @DeleteMapping("/deleteMovie/{id}")
+    public Movie deleteMovie(@PathVariable Integer id){
+        return movieService.deleteMovieById(id);
     }
 }
